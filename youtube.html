@@ -50,6 +50,7 @@ function handlePlayerAction(playerId, action) {
     case 'BUY':
       if (player.money >= action.item.cost) {
         player.money -= action.item.cost;
+        player.hand = player.hand.filter(item => item.type !== action.item.type);
         player.hand.push(action.item);
         player.ws.send(JSON.stringify({ type: 'ITEM_BOUGHT', item: action.item }));
       }
