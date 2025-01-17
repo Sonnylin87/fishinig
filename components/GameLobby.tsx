@@ -4,14 +4,10 @@ import { Input } from '@/components/ui/input';
 
 interface GameLobbyProps {
   onJoinGame: (playerName: string) => void;
-  onCreateParty: (partyName: string) => void;
-  onJoinParty: (partyId: string) => void;
 }
 
-const GameLobby: React.FC<GameLobbyProps> = ({ onJoinGame, onCreateParty, onJoinParty }) => {
+const GameLobby: React.FC<GameLobbyProps> = ({ onJoinGame }) => {
   const [playerName, setPlayerName] = useState('');
-  const [partyName, setPartyName] = useState('');
-  const [partyId, setPartyId] = useState('');
 
   return (
     <div className="max-w-md mx-auto">
@@ -25,31 +21,7 @@ const GameLobby: React.FC<GameLobbyProps> = ({ onJoinGame, onCreateParty, onJoin
           className="mb-2"
         />
         <Button onClick={() => onJoinGame(playerName)} disabled={!playerName}>
-          加入隨機遊戲
-        </Button>
-      </div>
-      <div className="mb-4">
-        <Input
-          type="text"
-          placeholder="輸入派對名稱"
-          value={partyName}
-          onChange={(e) => setPartyName(e.target.value)}
-          className="mb-2"
-        />
-        <Button onClick={() => onCreateParty(partyName)} disabled={!partyName}>
-          創建派對
-        </Button>
-      </div>
-      <div>
-        <Input
-          type="text"
-          placeholder="輸入派對ID"
-          value={partyId}
-          onChange={(e) => setPartyId(e.target.value)}
-          className="mb-2"
-        />
-        <Button onClick={() => onJoinParty(partyId)} disabled={!partyId}>
-          加入派對
+          開始配對
         </Button>
       </div>
     </div>
